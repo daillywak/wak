@@ -91,6 +91,13 @@ public class Character : MonoBehaviour
         dmg.set(damage);
     }
 
+
+    const float MAX_DASH_TIME = 0.1f;
+    public float curDashTime = 0.1f;
+    const float DASH_SPEED = 20;
+    //public float dashStoppingSpeed = 0.1f;
+ 
+
     void inputKey()
     {
         if (_state != CHARACTER_STATE.IDLE)
@@ -108,6 +115,22 @@ public class Character : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, -180f, 0f));
         }
         transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * 3 * Time.deltaTime;
+
+        // 대시
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            curDashTime = 0.0f;
+
+            _anim.SetTrigger("Dash");
+            transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * 3 * Time.deltaTime;
+        }
+
+        // 대시 이동
+        if (curDashTime < MAX_DASH_TIME)
+        {
+            curDashTime += Time.deltaTime;
+            transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * DASH_SPEED * Time.deltaTime;
+        }
 
         // 이동 애니메이션 관리
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
