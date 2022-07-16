@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Map
+    uniqueID: 3433835593
+    locked: 0
   - name: Tile_Object
     uniqueID: 1755676117
     locked: 0
