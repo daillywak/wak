@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
 
         checkSkill[skillnum] = true;
         float time = 0.0f;
-        skill_Img[skillnum].color = Color.gray;
+        skill_Img[skillnum].color = new Color32(175, 175, 175, 255);
         cooltime_UI[skillnum].gameObject.SetActive(true);
 
         while (time < cooltime)
